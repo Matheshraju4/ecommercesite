@@ -3,7 +3,7 @@ import React from "react";
 const ProductCard = ({ product }: { product: ProductCardProps[] }) => {
   return (
     <div className="flex justify-center ">
-      <div className="flex  flex-col flex-wrap md:flex-row">
+      <div className="flex  flex-col flex-wrap md:flex-row justify-center">
         {product.map((product: ProductCardProps) => (
           <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a
@@ -55,7 +55,7 @@ const ProductCard = ({ product }: { product: ProductCardProps[] }) => {
               </div>
               <a
                 href="#"
-                className="flex items-center justify-center rounded-md bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                className="flex items-center justify-center rounded-md bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

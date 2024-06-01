@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Counter from "./Counter";
+import { ScanLine } from "lucide-react";
 interface Productpageprops {
   productname: string;
   description: string;
@@ -116,7 +117,7 @@ const ProductPage = ({ product }: { product: Productpageprops }) => {
           </div>
 
           <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
-            <h1 className="text-6xl font-bold text-gray-900 ">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 ">
               {product.productname}
             </h1>
 
@@ -278,13 +279,13 @@ const ProductPage = ({ product }: { product: Productpageprops }) => {
                 <span className="mt-1 block text-center text-xs">$40/mo</span>
               </label>
             </div> */}
-            <div className="flex items-start mt-2">
+            <div className="flex md:items-start  mt-2">
               <Counter />
             </div>
-            <div className=" flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
+            <div className=" flex flex-col  items-center justify-between space-y-4 border-t border-b py-4   ">
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-blue-700 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-blue-800"
+                className="inline-flex  items-center justify-center rounded-md border-2 border-transparent bg-blue-700 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-blue-800  w-full"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -301,6 +302,13 @@ const ProductPage = ({ product }: { product: Productpageprops }) => {
                   />
                 </svg>
                 Add to cart
+              </button>
+              <button
+                type="button"
+                className="inline-flex  items-center justify-center rounded-md border-2 border-transparent bg-blue-700 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-blue-800  w-full"
+              >
+                <ScanLine className="mr-2" />
+                Buy Now
               </button>
             </div>
 

@@ -1,7 +1,10 @@
+"use client";
+
 import Counter from "@/components/Counter";
 import ProductPage from "@/components/ProductPage";
+import axios from "axios";
 
-import React from "react";
+import React, { useEffect } from "react";
 const product = {
   productname: "Nick Air Max Pro 8888 - Super Light",
   description:
@@ -17,6 +20,13 @@ const product = {
 };
 
 const page = ({ params }: { params: { id: string } }) => {
+  useEffect(() => {
+    async function createUser() {
+      const res = await axios.post("/api/createData");
+      console.log("res", res.data);
+    }
+    createUser();
+  });
   return (
     <div>
       {/* {`This is the Id: ${params.id}`} */}
