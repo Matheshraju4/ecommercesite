@@ -11,9 +11,33 @@ interface Productpageprops {
   previousprice: string;
   ratings: string;
   imgurls: string[];
+  id: Number;
+}
+interface CheckoutPageProps {
+  id: Number;
+  quantity: number;
 }
 const ProductPage = ({ product }: { product: Productpageprops }) => {
+  const [quantity, setquantity] = useState(1);
   const [selectimg, setselectimg] = useState(0);
+  const [cart, setcart] = useState<CheckoutPageProps[]>([]);
+  const addToCart = (id: Number, quantity: number) => {
+    let currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const isItemInCart = currentCart.findIndex(
+      (item: CheckoutPageProps) => item.id === id
+    );
+    if (isItemInCart !== -1) {
+      currentCart[isItemInCart].quantity = quantity;
+    } else {
+      currentCart.push({ id, quantity });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(currentCart));
+    console.log(
+      "Items on local storage",
+      JSON.parse(localStorage.getItem("cart") || "[]")
+    );
+  };
   return (
     <section className="py-12 sm:py-16">
       <div className="container mx-auto px-4">
@@ -186,11 +210,13 @@ const ProductPage = ({ product }: { product: Productpageprops }) => {
             <div className="flex gap-4 p-3 pl-0 mt-2">
               <div className="">
                 <h1 className="text-md text-gray-500 line-through">
-                  Rs. 60.50
+                  Rs. {product.previousprice}
                 </h1>
               </div>
               <div className="">
-                <h1 className="text-lg text-gray-600 ">Rs: 60.50</h1>
+                <h1 className="text-lg text-gray-700 ">
+                  Rs. {product.actualprice}
+                </h1>
               </div>
               <div className="">
                 <h1 className="bg-green-600 rounded-xl font-semibold px-3 text-white ">
@@ -280,10 +306,11 @@ const ProductPage = ({ product }: { product: Productpageprops }) => {
               </label>
             </div> */}
             <div className="flex md:items-start  mt-2">
-              <Counter />
+              <Counter quantity={quantity} setCounter={setquantity} />
             </div>
             <div className=" flex flex-col  items-center justify-between space-y-4 border-t border-b py-4   ">
               <button
+                onClick={() => addToCart(product.id, quantity)}
                 type="button"
                 className="inline-flex  items-center justify-center rounded-md border-2 border-transparent bg-blue-700 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-blue-800  w-full"
               >
@@ -381,10 +408,7 @@ const ProductPage = ({ product }: { product: Productpageprops }) => {
 
             <div className="mt-8 flow-root sm:mt-12">
               <h1 className="text-3xl font-bold">Delivered To Your Door</h1>
-              <p className="mt-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                accusantium nesciunt fuga.
-              </p>
+              <p className="mt-4">{product.description}</p>
               <h1 className="mt-8 text-3xl font-bold">
                 From the Fine Farms of Brazil
               </h1>

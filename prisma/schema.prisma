@@ -39,6 +39,7 @@ model WishList {
 }
 
 model Product {
+  id Int  @default(autoincrement())
   productName     String
   productId       String   @id @default(uuid())
   description     String

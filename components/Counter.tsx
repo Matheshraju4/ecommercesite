@@ -1,17 +1,26 @@
 "use client";
 import { Minus, Plus } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Counter = () => {
-  const [counter, setcounter] = useState(0);
+const Counter = ({
+  quantity,
+  setCounter,
+}: {
+  quantity: number;
+  setCounter: (value: number) => void;
+}) => {
+  const [counter, setcounter] = useState(quantity);
 
   function minus() {
-    if (counter > 0) {
+    if (counter > 1) {
       setcounter(counter - 1);
     } else {
-      setcounter(0);
+      setcounter(1);
     }
   }
+  useEffect(() => {
+    setCounter(counter);
+  }, [counter]);
 
   return (
     <div className="max-w-sm  ">
