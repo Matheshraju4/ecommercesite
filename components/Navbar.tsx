@@ -1,6 +1,10 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Navbar: React.FC = () => {
+  const router = useRouter();
   return (
     <div
       className="flex flex-wrap rounded-md m-2 
@@ -52,7 +56,13 @@ shadow-md
                   />
                 </svg>
               </a>
-              <a className="flex items-center hover:text-blue-700" href="#">
+              <a
+                className="flex items-center hover:text-blue-700"
+                href="#"
+                onClick={() => {
+                  router.push("/checkout");
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"

@@ -41,3 +41,25 @@ export async function getproductUsingId(id: string) {
     return "Something went wrong";
   }
 }
+
+export async function getCartItemById(ids: number[]) {
+  const response = await prisma.product.findMany({
+    where: {
+      id: {
+        in: ids,
+      },
+    },
+  });
+  const cartItems = response.map((product) => {
+    const { id, productName, actualPrice, previousPrice, imgUrls } = product;
+    return {
+      id: id,
+      productName: productName,
+      actualPrice: actualPrice,
+      previousPrice: previousPrice,
+      imgUrls: imgUrls,
+    };
+  });
+
+  return cartItems;
+}
